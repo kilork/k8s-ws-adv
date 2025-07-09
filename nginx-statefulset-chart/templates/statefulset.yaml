@@ -49,17 +49,21 @@ spec:
       tolerations:
         {{- toYaml . | nindent 8 }}
       {{- end }}
-  {{- if .Values.persistence.enabled }}
-  volumeClaimTemplates:
-    - metadata:
-        name: www-data # This name must match the volumeMounts name in the container spec.
-      spec:
-        accessModes:
-          - ReadWriteOnce
-        {{- if .Values.persistence.storageClassName }}
-        storageClassName: {{ .Values.persistence.storageClassName }} # Storage class from values.yaml
-        {{- end }}
-        resources:
-          requests:
-            storage: {{ .Values.persistence.size }} # Storage size from values.yaml
-  {{- end }}
+      volumes:
+        - name: www-data
+          persistentVolumeClaim:
+            claimName: www-data
+  # {{- if .Values.persistence.enabled }}
+  # volumeClaimTemplates:
+  #   - metadata:
+  #       name: www-data # This name must match the volumeMounts name in the container spec.
+  #     spec:
+  #       accessModes:
+  #         - ReadWriteOnce
+  #       {{- if .Values.persistence.storageClassName }}
+  #       storageClassName: {{ .Values.persistence.storageClassName }} # Storage class from values.yaml
+  #       {{- end }}
+  #       resources:
+  #         requests:
+  #           storage: {{ .Values.persistence.size }} # Storage size from values.yaml
+  # {{- end }}

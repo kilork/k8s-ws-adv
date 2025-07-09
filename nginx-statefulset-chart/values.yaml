@@ -15,8 +15,8 @@ service:
   targetPort: 80 # Container port
 
 persistence:
-  enabled: false # Enable or disable persistent storage
-  storageClassName: "manual" # Specify a storage class name, e.g., "standard". Leave empty to use default.
+  enabled: true # Enable or disable persistent storage
+  storageClassName: "" # Specify a storage class name, e.g., "standard". Leave empty to use default.
   size: 1Gi # Size of the persistent volume claim for each replica
 
 # Resources for the Nginx container (optional)
