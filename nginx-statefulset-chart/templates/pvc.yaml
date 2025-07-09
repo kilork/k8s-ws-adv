@@ -23,4 +23,4 @@ spec:
   # Defines the requested storage capacity.
   resources:
     requests:
-      storage: 1Gi # Request 1 Gigabyte of storage
+      storage: {{ .Values.persistence.size }}
