@@ -1,0 +1,38 @@
+# nginx-statefulset-chart/values.yaml
+# This file contains the default values for the Helm chart.
+# These values can be overridden during chart installation using --set or a custom values file.
+
+replicaCount: 3 # Number of Nginx replicas in the StatefulSet
+
+image:
+  repository: nginx # The image repository for Nginx
+  tag: 1.14.2 # The image tag (version)
+  pullPolicy: IfNotPresent # Image pull policy
+
+service:
+  name: nginx-headless # Name of the headless service
+  port: 80 # Service port
+  targetPort: 80 # Container port
+
+persistence:
+  enabled: true # Enable or disable persistent storage
+  storageClassName: "" # Specify a storage class name, e.g., "standard". Leave empty to use default.
+  size: 1Gi # Size of the persistent volume claim for each replica
+
+# Resources for the Nginx container (optional)
+resources: {}
+  # limits:
+  #   cpu: 100m
+  #   memory: 128Mi
+  # requests:
+  #   cpu: 100m
+  #   memory: 128Mi
+
+# Node selector for scheduling pods (optional)
+nodeSelector: {}
+
+# Tolerations for scheduling pods on tainted nodes (optional)
+tolerations: []
+
+# Affinity rules for scheduling pods (optional)
+affinity: {}

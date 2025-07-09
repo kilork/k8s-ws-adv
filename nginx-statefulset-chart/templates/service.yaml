@@ -1,0 +1,21 @@
+# nginx-statefulset-chart/templates/service.yaml
+# This template defines the headless Service for the StatefulSet.
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ .Values.service.name }} # Service name from values.yaml
+  labels:
+    {{- include "nginx-statefulset-chart.labels" . | nindent 4 }}
+  annotations:
+    service.alpha.kubernetes.io/headless: "true"
+spec:
+  selector:
+    app.kubernetes.io/name: {{ include "nginx-statefulset-chart.name" . }}
+    app.kubernetes.io/instance: {{ .Release.Name }}
+  ports:
+    - protocol: TCP
+      port: {{ .Values.service.port }} # Service port from values.yaml
+      targetPort: {{ .Values.service.targetPort }} # Container port from values.yaml
+      name: web # Name for the port
+  clusterIP: None # Makes this a headless service
