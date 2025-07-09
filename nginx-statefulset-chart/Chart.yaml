@@ -4,6 +4,6 @@
 apiVersion: v2 # The API version of the Helm chart. v2 is for Helm 3.
 name: nginx-statefulset-chart # The name of the chart.
 description: A Helm chart for deploying an Nginx StatefulSet with persistent storage.
-type: Application # Specifies the chart type.
+type: application # Specifies the chart type.
 version: 0.1.0 # The version of the chart.
 appVersion: "1.14.2" # The version of the application being deployed (Nginx in this case).
