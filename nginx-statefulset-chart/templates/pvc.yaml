@@ -17,7 +17,9 @@ spec:
   # Defines the storage class to be used. If not specified, the default
   # storage class will be used. For demonstration, we'll omit it,
   # assuming a default dynamic provisioner is available.
-  # storageClassName: standard
+  {{- if .Values.persistence.storageClassName }}
+  storageClassName: {{ .Values.persistence.storageClassName }}
+  {{- end }}
   # Defines the requested storage capacity.
   resources:
     requests:
